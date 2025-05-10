@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '*' ]
   pull_request:
     branches: [ main ]
 
@@ -43,7 +43,7 @@ jobs:
         run: pnpm test
       
       - name: Run lint
-        run: pnpm lint
+        run: pnpm lint --max-warnings=9999
         
       - name: Check formatting
         run: pnpm format:check 

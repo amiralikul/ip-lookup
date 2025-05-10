@@ -1,7 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import { IpEntry } from '@/hooks/useIpEntries';
-import { memo, useEffect } from 'react';
 import { TimeDisplay } from '@/components/TimeDisplay.tsx';
 import { useForm, Controller, ControllerRenderProps } from 'react-hook-form';
 import { z } from 'zod';
