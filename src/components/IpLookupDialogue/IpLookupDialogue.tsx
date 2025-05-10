@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { useIpEntries } from '@/hooks/useIpEntries';
 import { IpEntryItem } from '../IpEntryItem/IpEntryItem';
 import { AddButton } from '../AddButton';
+import { TimeProvider } from '@/contexts/TimeContext';
 
 interface IpLookupProps {
   open: boolean;
@@ -22,14 +23,16 @@ export function IpLookupDialogue({ open, onOpenChange }: IpLookupProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-          <AddButton onClick={handleAddEntry} />
-          <form>
+          <div className="mb-4">
+            <AddButton onClick={handleAddEntry} />
+          </div>
+          <TimeProvider>
           <div className="space-y-4">
             {entries.map((entry, index) => {
               return <IpEntryItem key={entry.id} index={index} {...entry} onSearch={handleIpChange} />
             })}
           </div>
-          </form>
+          </TimeProvider>
         </div>
       </DialogContent>
     </Dialog>

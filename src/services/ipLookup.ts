@@ -6,7 +6,8 @@ export interface IpLookupResult {
   timezone: string;
 }
 
-const API_URL = 'https://ipapi.co';
+
+const API_URL = import.meta.env.VITE_IP_LOOKUP_API_URL;
 
 export async function lookupIp(ip: string): Promise<IpLookupResult> {
   const response = await axios.get(`${API_URL}/${ip}/json/`);

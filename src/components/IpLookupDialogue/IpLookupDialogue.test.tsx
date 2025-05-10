@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { IpLookupDialogue } from './IpLookupDialogue';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { TimeProvider } from '@/contexts/TimeContext';
 
 
 vi.mock('@/hooks/useIpEntries', () => ({
@@ -19,9 +18,7 @@ describe('IpLookupDialogue', () => {
   it('should render the dialog with the correct title', () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <TimeProvider>
-          <IpLookupDialogue open={true} onOpenChange={vi.fn()} />
-        </TimeProvider>
+        <IpLookupDialogue open={true} onOpenChange={vi.fn()} />
       </QueryClientProvider>
     );
     expect(screen.getByText('IP Lookup')).toBeInTheDocument();

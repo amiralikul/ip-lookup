@@ -1,6 +1,10 @@
-import { useLocalTime } from '@/hooks/useLocalTime.ts';
+import { useTime } from '@/contexts/TimeContext';
+import { formatLocalTime } from '@/utils/formatLocalTime';
 
 export const TimeDisplay =  ({ timezone }: { timezone: string }) => {
-  const time = useLocalTime(timezone);
+
+  const { currentTime } = useTime();
+
+  const time = formatLocalTime(currentTime, timezone);
   return <span className="text-sm">{time}</span>;
 };

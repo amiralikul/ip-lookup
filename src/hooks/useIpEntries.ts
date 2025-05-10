@@ -25,7 +25,7 @@ export function useIpEntries() {
       enabled: Boolean(entry.ip),
       staleTime: 5 * 60 * 1000, 
       retry: 1,
-    }))
+    })),
   })
 
   const handleAddEntry = () => {
@@ -34,9 +34,7 @@ export function useIpEntries() {
   }
 
   const handleIpChange = useDebouncedCallback((id: string, value: string) => {
-    setEntries(entries.map(entry =>
-      entry.id === id ? { ...entry, ip: value } : entry
-    ))
+    setEntries(prev => prev.map(e => e.id === id ? { ...e, ip: value } : e))
   }, 1000)
 
 
