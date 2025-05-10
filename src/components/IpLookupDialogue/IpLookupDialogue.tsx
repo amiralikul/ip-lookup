@@ -27,7 +27,7 @@ export function IpLookupDialogue({ open, onOpenChange }: IpLookupProps) {
             <AddButton onClick={handleAddEntry} />
           </div>
           <TimeProvider>
-          <div className="space-y-4">
+          <div className="space-y-6">
             {entries.map((entry, index) => {
               return <IpEntryItem key={entry.id} index={index} {...entry} onSearch={handleIpChange} />
             })}

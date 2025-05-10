@@ -69,7 +69,7 @@ export const IpEntryItem = function IpEntry({
             />
           )}
         />
-        <p className="text-xs text-red-500 absolute bottom-[-20px] left-0">{errorMessage}</p>
+        <p className="text-xs text-red-500 absolute left-0 bottom-[-20px]">{errorMessage}</p>
       </div>
       <div className="flex items-center gap-2 min-w-[120px] h-6">
         {isLoading ? (
