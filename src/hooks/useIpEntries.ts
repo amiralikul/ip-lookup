@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useQueries } from "@tanstack/react-query"
 import { lookupIp } from "@/services/ipLookup"
-import { useDebouncedCallback } from "use-debounce"
 
 interface IpEntryInput {
   id: string
