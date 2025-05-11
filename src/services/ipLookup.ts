@@ -8,17 +8,19 @@ export interface IpLookupResult {
 
 
 const API_URL = import.meta.env.VITE_IP_LOOKUP_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 
 export async function lookupIp(ip: string): Promise<IpLookupResult> {
-  const response = await axios.get(`${API_URL}/${ip}/json/`);
+  const response = await axios.get(`${API_URL}?apiKey=${API_KEY}&ipAddress=${ip}`);
   
-  if (response.data.error) {
-    throw new Error(response.data.reason || 'Failed to lookup IP address');
+  if (response.data.status === 'fail') {
+    throw new Error(response.data.message || 'Failed to lookup IP address');
   }
 
   return {
-    country: response.data.country_name,
-    countryCode: response.data.country_code,
-    timezone: response.data.timezone,
+    country: response.data.location.country,
+    countryCode: response.data.location.country,
+    timezone: response.data.location.timezone,
   };
 } 

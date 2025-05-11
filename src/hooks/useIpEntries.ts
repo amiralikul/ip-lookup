@@ -33,10 +33,13 @@ export function useIpEntries() {
     setEntries([...entries, { id: newId, ip: "" }])
   }
 
-  const handleIpChange = useDebouncedCallback((id: string, value: string) => {
+  const handleIpChange = (id: string, value: string) => {
     setEntries(prev => prev.map(e => e.id === id ? { ...e, ip: value } : e))
-  }, 1000)
+  }
 
+  const handleClearEntries = () => {
+    setEntries([]);
+  }
 
   const enrichedEntries: IpEntry[] = entries.map((entry, index) => {
     const query = queries[index]
@@ -53,5 +56,6 @@ export function useIpEntries() {
     entries: enrichedEntries,
     handleAddEntry,
     handleIpChange,
+    handleClearEntries,
   }
 } 

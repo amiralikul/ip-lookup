@@ -1,4 +1,3 @@
-
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useIpEntries } from '@/hooks/useIpEntries';
 import { IpEntryItem } from '../IpEntryItem/IpEntryItem';
@@ -11,13 +10,21 @@ interface IpLookupProps {
 }
 
 export function IpLookupDialogue({ open, onOpenChange }: IpLookupProps) {
-  const { entries, handleAddEntry, handleIpChange } = useIpEntries();
+  const { entries, handleAddEntry, handleIpChange, handleClearEntries } = useIpEntries();
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      handleClearEntries();
+    }
+    onOpenChange(isOpen);
+  }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>IP Lookup</DialogTitle>
+          <hr className="-mx-6" />
           <DialogDescription>
             Enter one or more IP addresses and get their country
           </DialogDescription>
@@ -26,6 +33,7 @@ export function IpLookupDialogue({ open, onOpenChange }: IpLookupProps) {
           <div className="mb-4">
             <AddButton onClick={handleAddEntry} />
           </div>
+          <hr className="-mx-6 mb-4" />
           <TimeProvider>
           <div className="space-y-6">
             {entries.map((entry, index) => {

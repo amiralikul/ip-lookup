@@ -6,7 +6,7 @@ import { useForm, Controller, ControllerRenderProps } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getFlagEmoji } from '@/utils/getFlagEmoji';
-
+import { useDebouncedCallback } from 'use-debounce';
 interface IpEntryProps extends IpEntry {
   index: number;
   onSearch: (id: string, value: string) => void;
@@ -40,10 +40,11 @@ export const IpEntryItem = function IpEntry({
   });
 
   
-  const onSubmit = (data: IpFormInput) => {
+  const onSubmit = useDebouncedCallback((data: IpFormInput) => {
     onSearch(id, data.ipAddress);
-  };
+  }, 500);
 
+  
   const handleBlur = async (field: ControllerRenderProps<IpFormInput, "ipAddress">) => {
     field.onBlur();
     await handleSubmit(onSubmit)();
