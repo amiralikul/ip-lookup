@@ -46,22 +46,3 @@ jobs:
           name: build
           path: dist
 
-  # Uncomment and configure this job when you have a deployment target
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: build
-  #         path: dist
-  #     
-  #     - name: Deploy to hosting service
-  #       # Add your deployment steps here
-  #       # Examples:
-  #       # - Deploy to GitHub Pages
-  #       # - Deploy to Netlify
-  #       # - Deploy to Vercel
-  #       # - Custom deployment to your own server
-  #       run: echo "Add deployment commands here" 
