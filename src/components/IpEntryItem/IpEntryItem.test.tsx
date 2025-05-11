@@ -94,7 +94,7 @@ describe('IpEntryItem', () => {
     
     // Check that validation error is displayed
     await waitFor(() => {
-      expect(screen.getByText('Invalid IP address here')).toBeInTheDocument();
+      expect(screen.getByText('Please enter a valid IP address.')).toBeInTheDocument();
     });
   });
 }); 
